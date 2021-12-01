@@ -15,7 +15,7 @@ source session.sh
 
 day='1'
 dir=$(printf 'day%02d' $day)
-curl --cookie "session=$session" --compressed  "https://adventofcode.com/2020/day/$day/input" > "$dir/input.txt"
+curl --cookie "session=$session" --compressed  "https://adventofcode.com/2021/day/$day/input" > "$dir/input.txt"
 ```
 
 ## Work on a day

@@ -15,19 +15,23 @@ func Test_one(t *testing.T) {
 		{
 			name: "example",
 			in: []string{
-				"1721",
-				"979",
-				"366",
-				"299",
-				"675",
-				"1456",
+				"199",
+				"200",
+				"208",
+				"210",
+				"200",
+				"207",
+				"240",
+				"269",
+				"260",
+				"263",
 			},
-			want: 514579,
+			want: 7,
 		},
 		{
 			name: "real",
 			in:   input.ReadLines("./input.txt"),
-			want: -1,
+			want: 1709,
 		},
 	}
 	for _, tt := range tests {
@@ -49,19 +53,23 @@ func Test_two(t *testing.T) {
 		{
 			name: "example",
 			in: []string{
-				"1721",
-				"979",
-				"366",
-				"299",
-				"675",
-				"1456",
+				"199",
+				"200",
+				"208",
+				"210",
+				"200",
+				"207",
+				"240",
+				"269",
+				"260",
+				"263",
 			},
-			want: 241861950,
+			want: 5,
 		},
 		{
 			name: "real",
 			in:   input.ReadLines("./input.txt"),
-			want: -1,
+			want: 1761,
 		},
 	}
 	for _, tt := range tests {

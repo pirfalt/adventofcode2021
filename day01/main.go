@@ -2,34 +2,38 @@ package main
 
 import (
 	"log"
+	"math"
 
 	input "github.com/pirfalt/adventofcode2021/input"
 )
 
 func one(in []string) int {
 	ii := input.ParseInts(in)
-	for _, i0 := range ii {
-		for _, i1 := range ii {
-			if i0+i1 == 2020 {
-				return i0 * i1
-			}
+
+	incCount := 0
+	prev := math.MaxInt
+	for _, i := range ii {
+		if i > prev {
+			incCount++
 		}
+		prev = i
 	}
-	return -1
+	return incCount
 }
 
 func two(in []string) int {
 	ii := input.ParseInts(in)
-	for _, i0 := range ii {
-		for _, i1 := range ii {
-			for _, i2 := range ii {
-				if i0+i1+i2 == 2020 {
-					return i0 * i1 * i2
-				}
-			}
+
+	incCount := 0
+	for i := 3; i < len(ii); i++ {
+		p0, p1, p2, p3 := ii[i-3], ii[i-2], ii[i-1], ii[i]
+		p := p0 + p1 + p2
+		c := p1 + p2 + p3
+		if c > p {
+			incCount++
 		}
 	}
-	return -1
+	return incCount
 }
 
 func main() {
