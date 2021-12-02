@@ -13,8 +13,9 @@ Daily run.
 ```sh
 source session.sh
 
-day='1'
+day='2'
 dir=$(printf 'day%02d' $day)
+mkdir $dir
 curl --cookie "session=$session" --compressed  "https://adventofcode.com/2021/day/$day/input" > "$dir/input.txt"
 ```
 
