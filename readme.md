@@ -16,6 +16,7 @@ source session.sh
 day='2'
 dir=$(printf 'day%02d' $day)
 mkdir $dir
+cp -r day00/ $dir/
 curl --cookie "session=$session" --compressed  "https://adventofcode.com/2021/day/$day/input" > "$dir/input.txt"
 ```
 
