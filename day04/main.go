@@ -10,33 +10,7 @@ import (
 )
 
 func one(in io.Reader) int {
-
-	data, err := io.ReadAll(in)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Raw input blocks
-	dd := strings.Split(string(data), "\n\n")
-
-	// [nrsInput, boards...]
-	nrsInput := strings.Split(dd[0], ",")
-	boardInputs := dd[1:]
-
-	nrs := input.ParseInts(nrsInput)
-
-	// boardInputs ([][]strings) -> boards ([][]int)
-	boards := make([][]int, 0, len(boardInputs))
-	for _, bi := range boardInputs {
-		boardOneline := strings.ReplaceAll(bi, "\n", " ")
-		boardStrings := strings.Split(boardOneline, " ")
-		board := input.ParseInts(boardStrings)
-
-		if len(board) == 0 {
-			break
-		}
-		boards = append(boards, board)
-	}
+	nrs, boards := parseInput(in)
 
 	// log.Printf("nrs: %v\tbs: %v", nrs, boards)
 
@@ -53,6 +27,36 @@ func one(in io.Reader) int {
 	}
 
 	return 0
+}
+
+func parseInput(in io.Reader) (numbers []int, boards [][]int) {
+	data, err := io.ReadAll(in)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Raw input blocks
+	dd := strings.Split(string(data), "\n\n")
+
+	// [nrsInput, boards...]
+	nrsInput := strings.Split(dd[0], ",")
+	boardInputs := dd[1:]
+
+	numbers = input.ParseInts(nrsInput)
+
+	// boardInputs ([][]strings) -> boards ([][]int)
+	boards = make([][]int, 0, len(boardInputs))
+	for _, bi := range boardInputs {
+		boardOneline := strings.ReplaceAll(bi, "\n", " ")
+		boardStrings := strings.Split(boardOneline, " ")
+		board := input.ParseInts(boardStrings)
+
+		if len(board) == 0 {
+			break
+		}
+		boards = append(boards, board)
+	}
+	return numbers, boards
 }
 
 func checkBoard(board []int, in []int) bool {
@@ -103,6 +107,7 @@ func checkBoard(board []int, in []int) bool {
 
 	return false
 }
+
 func sumOfUnmarked(board []int, in []int) int {
 	inSet := map[int]struct{}{}
 	for _, nr := range in {
@@ -121,33 +126,7 @@ func sumOfUnmarked(board []int, in []int) int {
 }
 
 func two(in io.Reader) int {
-
-	data, err := io.ReadAll(in)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Raw input blocks
-	dd := strings.Split(string(data), "\n\n")
-
-	// [nrsInput, boards...]
-	nrsInput := strings.Split(dd[0], ",")
-	boardInputs := dd[1:]
-
-	nrs := input.ParseInts(nrsInput)
-
-	// boardInputs ([][]strings) -> boards ([][]int)
-	boards := make([][]int, 0, len(boardInputs))
-	for _, bi := range boardInputs {
-		boardOneline := strings.ReplaceAll(bi, "\n", " ")
-		boardStrings := strings.Split(boardOneline, " ")
-		board := input.ParseInts(boardStrings)
-
-		if len(board) == 0 {
-			break
-		}
-		boards = append(boards, board)
-	}
+	nrs, boards := parseInput(in)
 
 	// log.Printf("nrs: %v\tbs: %v", nrs, boards)
 
