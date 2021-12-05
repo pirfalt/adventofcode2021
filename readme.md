@@ -13,7 +13,7 @@ Daily run.
 ```sh
 source session.sh
 
-day='3'
+day='4'
 dir=$(printf 'day%02d' $day)
 mkdir $dir
 cp -r day00/ $dir/
