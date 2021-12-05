@@ -154,17 +154,19 @@ func two(in io.Reader) int {
 	for i, latestNr := range nrs {
 		takenNrs := nrs[0 : i+1]
 
-		if len(boards) == 1 {
-			b := boards[0]
-			unmarked := sumOfUnmarked(b, takenNrs)
-			// log.Println(unmarked, latestNr)
-			return unmarked * latestNr
-		}
-
-		for bi, b := range boards {
+		for bi := 0; bi < len(boards); bi++ { // no `range`, since we modify boards in the loop
+			b := boards[bi]
 			if checkBoard(b, takenNrs) {
-				boards = append(boards[:bi], boards[bi+1:]...) // remove board from list
-				// log.Println("dropping board", b)
+				if len(boards) == 1 { // is last board
+					b := boards[0]
+					log.Println("last board", len(boards), b)
+					unmarked := sumOfUnmarked(b, takenNrs)
+					log.Println(unmarked, latestNr)
+					return unmarked * latestNr
+				}
+
+				boards = append(boards[0:bi], boards[bi+1:]...) // remove board from list
+				log.Println("dropping board", bi, "/", len(boards), b)
 			}
 		}
 	}

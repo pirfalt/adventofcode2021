@@ -132,11 +132,11 @@ func Test_two(t *testing.T) {
 			in:   exampleFile(),
 			want: 1924,
 		},
-		// {
-		// 	name: "real",
-		// 	in:   inputFile(),
-		// 	want: 0,
-		// },
+		{
+			name: "real",
+			in:   inputFile(),
+			want: 6804,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
