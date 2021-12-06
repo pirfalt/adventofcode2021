@@ -13,7 +13,7 @@ Daily run.
 ```sh
 source session.sh
 
-day='5'
+day='6'
 dir=$(printf 'day%02d' $day)
 mkdir $dir
 cp -r day00/ $dir/
@@ -23,6 +23,7 @@ curl --cookie "session=$session" --compressed  "https://adventofcode.com/2021/da
 ## Work on a day
 
 ```sh
+code $dir/*
 cd $dir
 
 # Test
